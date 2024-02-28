@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Family Medical History Tree</title>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" />
+		<style>
+			body {
+				font-family: 'Poppins', sans-serif;
+				background-color: #f0f0f0;
+			}
+			.intro {
+				margin: 0 auto;
+				max-width: 800px;
+				padding: 0 20px;
+				text-align: center;
+			}
+			.container {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+				margin-top: 100px;
+				margin-bottom: 200px;
+			}
+			.generation {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				margin-bottom: 120px;
+			}
+			.subgeneration {
+				display: flex;
+				justify-content: space-between;
+			}
+			.invisible {
+				visibility: hidden;
+			}
+			.tiny-text {
+				font-size: 10px;
+			}
+			.person {
+				width: 110px;
+				font-weight: 500;
+				height: 60px;
+				background-color: indianred;
+				color: azure;
+				border: 1px solid black;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin: 0 20px;
+				border-radius: 8px;
+				padding: 5px;
+				text-align: center;
+				position: relative;
+				box-shadow: 5px 5px 5px black;
+			}
+			.halfperson {
+				width: 110px;
+				height: 60px;
+				border: 1px solid #000;
+				margin: 0 20px;
+				padding: 5px;
+			}
+			.male {
+				background-color: rgb(41, 95, 91);
+			}
+			.female {
+				background-color: rgb(99, 58, 39);
+			}
+			.person.dead {
+				opacity: 50%;
+			}
+			.person.unknown {
+				background-color: gray;
+			}
+			.subgeneration.dad .person {
+				filter: hue-rotate(50deg);
+			}
+			.subgeneration.mom .person {
+				filter: hue-rotate(-50deg);
+			}
+			.me {
+				background-color: darkred;
+			}
+			.person-info {
+				font-size: 16px;
+				text-align: left;
+				width: 230px;
+				color: black;
+				position: absolute;
+				top: calc(100% + 0px);
+				left: 50%;
+				transform: translateX(-50%);
+				background-color: white;
+				border: 1px solid #ccc;
+				padding: 5px 10px;
+				border-radius: 5px;
+				box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+				white-space: normal;
+				overflow-wrap: break-word;
+				z-index: 10;
+				box-shadow: 5px 5px 5px black;
+				display: none;
+			}
+			.person:hover {
+				color: rgb(203, 203, 203);
+				cursor: default;
+				z-index: 100;
+			}
+			a {
+				color: cornflowerblue;
+			}
+			h1 {
+				text-align: center;
+				margin-top: 60px;
+			}
+			.person:hover .person-info {
+				display: block;
+			}
+
+			@media screen and (max-width: 768px) {
+				.intro {
+					margin: 20px auto;
+					max-width: 90%;
+					padding: 0 10px;
+				}
+				.person {
+					width: 240px;
+					margin: 10px 20px;
+				}
+				.halfperson {
+					position: absolute;
+				}
+				.person-info {
+					width: 240px;
+				}
+				.generation,
+				.subgeneration {
+					flex-direction: column;
+				}
+				.person.dead {
+					opacity: 100%;
+				}
+			}
+
+			@media screen and (max-width: 1024px) {
+				.person,
+				.halfperson {
+					width: 80px;
+					margin: 5px 10px;
+					font-size: 10px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Family Medical History Tree</h1>
+		<p class="intro">
+			Please note that this was made to be viewed on a Desktop computer. Hover over or tap on a person to see health
+			information about them. If your screen is too big or too small to display the entire tree, zoom in or out using
+			CTRL and + or CTRL and -.
+		</p>
+		<div class="container">
+			<div class="generation">
+				<div class="person me">
+					Me
+					<div class="person-info">
+						- 24 years old. <br />
+						- Possible subclinical hypothyroidism. (Linked to mother?) Doesn't require treatment at this time. It was
+						discovered by accident during a stressful period. <br />
+						<a href="https://i.imgur.com/gIHWjbd.png">See results from the blood test I took.</a>
+					</div>
+				</div>
+				<div class="person">
+					Brother
+					<div class="person-info">
+						- 22 years old. <br />
+						- No illnesses.
+					</div>
+				</div>
+			</div>
+			<div class="generation">
+				<div class="subgeneration dad">
+					<div class="person male">
+						Father
+						<div class="person-info">
+							- 51 years old. <br />
+							- Low blood pressure. <br />
+							- No other issues; doesn’t smoke or drink, as is the case in the remainder of my family.
+						</div>
+					</div>
+				</div>
+				<div class="halfperson invisible"></div>
+				<div class="subgeneration mom">
+					<div class="person female">
+						Mother
+						<div class="person-info">
+							- 50 years old. <br />
+							- Has Hashimoto’s thyroiditis — an underactive thyroid. Easy to medicate.
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="generation">
+				<div class="subgeneration dad">
+					<div class="person male dead">
+						Paternal Grandfather
+						<div class="person-info">
+							- Lived to be 47 years old. <br />
+							- Heavy smoker who died of lung cancer.
+						</div>
+					</div>
+					<div class="halfperson invisible"></div>
+					<div class="person female dead">
+						Paternal Grandmother
+						<div class="person-info">
+							- Lived to be 69 years old. <br />
+							- Died of uterine cancer. <br />
+							- No other illnesses.
+						</div>
+					</div>
+				</div>
+				<div class="halfperson invisible"></div>
+				<div class="halfperson invisible"></div>
+				<div class="subgeneration mom">
+					<div class="person male">
+						Maternal Grandfather
+						<div class="person-info">
+							- 73 years old. <br />
+							- No illnesses.
+						</div>
+					</div>
+					<div class="halfperson invisible"></div>
+					<div class="person female">
+						Maternal Grandmother
+						<div class="person-info">
+							- 71 years old. <br />
+							- High blood pressure. <br />
+							- Has had atrial fibrillation for the past 10 years.
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="generation tiny-text">
+				<div class="subgeneration dad">
+					<div class="person male dead unknown">
+						Great-grandfather on my father’s father’s side
+						<div class="person-info">- Unknown illnesses.</div>
+					</div>
+					<div class="person female dead unknown">
+						Great-grandmother on my father’s father’s side
+						<div class="person-info">- Unknown illnesses.</div>
+					</div>
+					<div class="person male dead">
+						Great-grandfather on my father’s mother’s side
+						<div class="person-info">
+							- Lived to be 92 years old. <br />
+							- No illnesses I am aware of.
+						</div>
+					</div>
+					<div class="person female dead">
+						Great-grandmother on my father’s mother’s side
+						<div class="person-info">
+							- Lived to be 90 years old. <br />
+							- No illnesses I am aware of.
+						</div>
+					</div>
+				</div>
+				<div class="halfperson invisible"></div>
+				<div class="subgeneration mom">
+					<div class="person male dead">
+						Great-grandfather on my mother’s father’s side
+						<div class="person-info">
+							- 78 years old. <br />
+							- Died of stroke. <br />
+							- Had a heart attack towards end of life.
+						</div>
+					</div>
+					<div class="person female dead">
+						Great-grandmother on my mother’s father’s side
+						<div class="person-info">
+							- Lived to be 86 years old. <br />
+							- Died of "natural" causes. <br />
+							- Had stroke and angina pectoris towards end of life. Likely also dementia.
+						</div>
+					</div>
+					<div class="person male dead unknown">
+						Great-grandfather on my mother’s mother’s side
+						<div class="person-info">
+							- Lived to be 43 years old. <br />
+							- Appeared to have died of pneumonia. Doctors were not available in the village.
+						</div>
+					</div>
+					<div class="person female dead">
+						Great-grandmother on my mother’s mother’s side
+						<div class="person-info">
+							- Lived to be 87 years old. <br />
+							- Likely died of natural causes.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
